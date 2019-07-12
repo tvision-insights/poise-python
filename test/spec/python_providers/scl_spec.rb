@@ -54,6 +54,16 @@ describe PoisePython::PythonProviders::Scl do
     it_behaves_like 'scl provider', 'rh-python36'
   end # /context with version "3"
 
+  context 'with version "3.5"' do
+    let(:python_version) { '3.5' }
+    it_behaves_like 'scl provider', 'rh-python35'
+  end # /context with version "3"
+
+  context 'with version "3.4"' do
+    let(:python_version) { '3.4' }
+    it_behaves_like 'scl provider', 'rh-python34'
+  end # /context with version "3"
+
   context 'with version "3.3"' do
     let(:python_version) { '3.3' }
     it_behaves_like 'scl provider', 'python33'

@@ -30,7 +30,7 @@ module PoisePython
       scl_package('3.5.1', 'rh-python35', 'rh-python35-python-devel')
       scl_package('3.4.2', 'rh-python34', 'rh-python34-python-devel')
       scl_package('3.3.2', 'python33', 'python33-python-devel')
-      scl_package('2.7.8', 'python27', 'python27-python-devel')
+      scl_package('2.7.16', 'python27', 'python27-python-devel')
 
       def python_binary
         ::File.join(scl_folder, 'root', 'usr', 'bin', 'python')
