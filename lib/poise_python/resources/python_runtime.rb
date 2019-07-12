@@ -83,6 +83,12 @@ module PoisePython
         #   be installed.
         #   @return [String, Boolean]
         attribute(:wheel_version, kind_of: [String, TrueClass, FalseClass], default: true)
+        # @!attribute environment
+        #   Hash of a additional environment variables for this runtime. This
+        #   is a good place to set pip variables, like `PIP_INDEX_URL` and
+        #   `PIP_EXTRA_INDEX_URL`.
+        #   @return [Hash]
+        attribute(:environment, kind_of: [Hash], default: {})
 
         # The path to the `python` binary for this Python installation. This is
         # an output property.
@@ -103,7 +109,7 @@ module PoisePython
         #     environment resources('python_runtime[2.7]').python_environment
         #   end
         def python_environment
-          provider_for_action(:python_environment).python_environment
+          provider_for_action(:python_environment).python_environment.merge(environment)
         end
       end
 

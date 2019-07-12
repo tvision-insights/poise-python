@@ -107,10 +107,11 @@ module PoisePython
 
         def python_environment
           if new_resource.parent_python
-            new_resource.parent_python.python_environment
+            env = new_resource.parent_python.python_environment
           else
-            {}
+            env = {}
           end
+          env.merge({ 'VIRTUAL_ENV' => new_resource.path })
         end
 
         private
