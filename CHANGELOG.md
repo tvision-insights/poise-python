@@ -1,5 +1,15 @@
 # Poise-Python Changelog
 
+## v1.8.0 (ndpgroup/poise-python)
+
+* Support PIP 19, which removed process_dependency_links
+* Clarify README wording a little
+* Strip additional characters in package name from debian upstream changes
+* Add support for additional/arbitrary env vars in runtime
+* Set "VIRTUAL_ENV" in the environment for a python_virtualenv resource
+* Update SCL Python 2.7 to 2.7.16 (python27)
+* Update to support SCL Python 3.6 (rh-python36)
+
 ## v1.7.1
 
 * Support for Pip 18.1.
