@@ -1,3 +1,4 @@
+# coding: utf-8
 #
 # Copyright 2015-2017, Noah Kantrowitz
 #
@@ -44,19 +45,31 @@ if re.match(r'0\\.|1\\.|6\\.0', pip.__version__):
 
 try:
   from pip.commands import InstallCommand
+except ImportError:
+  # Pip 10 moved all internals to their own package.
+  try:
+    from pip._internal.commands import InstallCommand
+  except ImportError:
+    from pip._internal.commands.install import InstallCommand
+
+try:
   from pip.index import PackageFinder
+except ImportError:
+  try:
+    from pip._internal.index import PackageFinder
+  except ImportError:
+    from pip._internal.index.package_finder import PackageFinder
+
+try:
   from pip.req import InstallRequirement
   install_req_from_line = InstallRequirement.from_line
 except ImportError:
-  # Pip 10 moved all internals to their own package.
-  from pip._internal.commands import InstallCommand
-  from pip._internal.index import PackageFinder
   try:
-    # Pip 18.1 moved from_line to the constructors
-    from pip._internal.req.constructors import install_req_from_line
-  except ImportError:
     from pip._internal.req import InstallRequirement
     install_req_from_line = InstallRequirement.from_line
+  except ImportError:
+    # Pip 18.1 moved from_line to the constructors
+    from pip._internal.req.constructors import install_req_from_line
 
 packages = {}
 cmd = InstallCommand()
